@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Rose Day 🌹</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffd6e5, #fff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 90%;
+    max-width: 380px;
+}
+
+h1 {
+    color: #ff4d79;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #555;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    background: #ff4d79;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff1f5a;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin: 15px 0;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+}
+
+.thankyou {
+    color: #ff4d79;
+    font-size: 18px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- STEP 1 -->
+    <div id="step1">
+        <h1>Happy Rose Day 🌹</h1>
+        <p>
+            I know hum aapko door se rose nahi de sakte,<br>
+            par wish toh kar hi sakte hain na?
+        </p>
+        <button onclick="showSurprise()">Wanna see a surprise?</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="hidden">
+        <!-- 🔴 IMAGE FILE NAME MUST MATCH WHAT YOU UPLOAD -->
+        <img src="rose.jpg" alt="Cute rose">
+
+        <p>
+            Waise toh aap poora bageecha deserve karte ho,<br>
+            par mere haathon me sirf itne hi aa paye 🌸
+        </p>
+
+        <p>If this made you smile,<br>you can reply anonymously 💌</p>
+
+        <form id="replyForm">
+            <textarea name="entry.1749186226" placeholder="Write whatever you feel…" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="hidden thankyou">
+        Message sent 🌷<br>
+        Someone out there is smiling now.
+    </div>
+
+</div>
+
+<script>
+function showSurprise() {
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+}
+
+document.getElementById("replyForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSfj8U6OIyldjDfvqq2bLwxEFOmnFc33efNGw3_4KdC4VDJZRQ/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: new FormData(this)
+    });
+
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("step3").classList.remove("hidden");
+});
+</script>
+
+</body>
+</html>
